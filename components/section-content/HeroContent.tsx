@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { getSectionOpacity } from '@/lib/frame-map'
 
 interface Props {
@@ -9,19 +9,21 @@ interface Props {
 }
 
 export default function HeroContent({ currentFrame }: Props) {
-  const opacity = getSectionOpacity('hero', currentFrame)
-  if (opacity === 0) return null
-
-  const blur = opacity < 1 ? `blur(${(1 - opacity) * 6}px)` : 'blur(0px)'
-  const y    = (1 - opacity) * 24
-
   // ── Scroll-driven exit animations (frames 0 → 36) ─────────────────
+  // NOTE: hooks must be called unconditionally (before any early return)
   const frameMotion = useMotionValue(currentFrame)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { frameMotion.set(currentFrame) }, [currentFrame])
+
+  // Spring smooths the discrete integer steps into a continuous curve
+  const smoothFrame = useSpring(frameMotion, {
+    stiffness: 280,
+    damping:   50,
+    mass:      0.6,
+  })
+
+  useEffect(() => { frameMotion.set(currentFrame) }, [currentFrame, frameMotion])
 
   // 0 = start, 1 = fully exited (at frame 36)
-  const progress = useTransform(frameMotion, [0, 36], [0, 1], { clamp: true })
+  const progress = useTransform(smoothFrame, [0, 50], [0, 1], { clamp: true })
 
   // Left headline: zoom in + sweep left
   const leftX     = useTransform(progress, [0, 1], ['0vw', '-65vw'])
@@ -32,11 +34,17 @@ export default function HeroContent({ currentFrame }: Props) {
   const rightScale = useTransform(progress, [0, 1], [1, 1.22])
 
   // Bottom-left block: slide down + fade
-  const bottomLeftY       = useTransform(progress, [0, 1],   ['0%', '50%'])
+  const bottomLeftY       = useTransform(progress, [0, 1],    ['0%', '50%'])
   const bottomLeftOpacity = useTransform(progress, [0, 0.55], [1, 0])
 
   // Scroll indicator: fade out early
   const indicatorOpacity = useTransform(progress, [0, 0.35], [1, 0])
+
+  const opacity = getSectionOpacity('hero', currentFrame)
+  if (opacity === 0) return null
+
+  const blur = opacity < 1 ? `blur(${(1 - opacity) * 6}px)` : 'blur(0px)'
+  const y    = (1 - opacity) * 24
 
   return (
     <section

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { getLenis } from '@/providers/LenisProvider'
 
 // Frame index to scroll TO for each section.
@@ -64,6 +64,25 @@ const NAV_LINKS = [
 ]
 
 export default function Navbar() {
+  // Track current frame from scroll so the wordmark can crossfade with HeroLogo
+  const [frame, setFrame] = useState(0)
+  useEffect(() => {
+    function onScroll() {
+      const el = document.getElementById('master-scroll')
+      if (!el) return
+      const scrollable = el.offsetHeight - window.innerHeight
+      if (scrollable <= 0) return
+      const progress = Math.max(0, Math.min(1, window.scrollY / scrollable))
+      setFrame(Math.round(progress * 299))
+    }
+    onScroll() // initialise immediately
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Wordmark fades IN as HeroLogo fades out (crossfade window: frames 50•68)
+  const wordmarkOpacity = Math.min(1, Math.max(0, (frame - 50) / 18))
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-transparent">
       <div className="relative flex items-center justify-between px-10 md:px-16 h-16 md:h-20">
@@ -74,9 +93,10 @@ export default function Navbar() {
           <NavBtn onClick={() => navScrollTo('#about')}>About</NavBtn>
         </div>
 
-        {/* ── Centre: Wordmark ──────────────────────────────────────────── */}
+        {/* ── Centre: Wordmark (crossfades in as HeroLogo arrives) ──────── */}
         <button
           onClick={() => navScrollTo('#home')}
+          style={{ opacity: wordmarkOpacity, transition: 'opacity 0.08s linear' }}
           className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center leading-none select-none cursor-pointer"
           aria-label="Port Authority — scroll to top"
         >

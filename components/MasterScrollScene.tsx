@@ -7,6 +7,7 @@ import { useScrollProgress } from '@/hooks/useScrollProgress'
 import { progressToFrame } from '@/lib/frame-map'
 import CanvasSequence from './CanvasSequence'
 import SectionContent from './section-content/SectionContent'
+import HeroLogo from './HeroLogo'
 
 export default function MasterScrollScene() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -54,7 +55,9 @@ export default function MasterScrollScene() {
 
         {/* ── Text overlays: section content ──────────────────────────── */}
         <SectionContent currentFrame={currentFrame} />
-
+        {/* ── Cinematic logo: hero-centre → navbar (outside SectionContent so
+             it isn't clipped by the section's blur filter) ────────────── */}
+        <HeroLogo currentFrame={currentFrame} />
       </div>
     </div>
   )
