@@ -31,11 +31,17 @@ export function progressToFrame(progress: number): number {
 
 /**
  * Build the public URL for a 0-based frame index.
- * e.g. index 0  → /sequence-master/ezgif-frame-001.png
- *      index 299 → /sequence-master/ezgif-frame-300.png
+ * Prefers WebP when available (convert PNGs → WebP for ~70% smaller payload).
+ * e.g. index 0  → /sequence-master/ezgif-frame-001.webp
+ *      index 299 → /sequence-master/ezgif-frame-300.webp
+ *
+ * If you haven't converted the images yet, change USE_WEBP to false.
  */
+const USE_WEBP = true // ← set to true after running the WebP conversion script
+
 export function getFramePath(index: number): string {
-  return `/sequence-master/ezgif-frame-${String(index + 1).padStart(3, '0')}.png`
+  const ext = USE_WEBP ? 'webp' : 'png'
+  return `/sequence-master/ezgif-frame-${String(index + 1).padStart(3, '0')}.${ext}`
 }
 
 /**

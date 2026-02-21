@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        zalando: ['ZalandoSans', 'sans-serif'],
+      },
       colors: {
         'pa-black': '#050505',
         'pa-platinum': '#C9B99A',

@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Zalando Sans Expanded ─────────────────────────────────────────── */
+@font-face {
+  font-family: 'ZalandoSans';
+  src: url('/fonts/Zalando_Sans_Expanded/ZalandoSansExpanded-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ZalandoSans';
+  src: url('/fonts/Zalando_Sans_Expanded/ZalandoSansExpanded-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --color-bg: #050505;
   --color-text: #ffffff;
@@ -37,4 +53,11 @@ body {
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Scroll indicator chevron cascade animation */
+@keyframes chevronPulse {
+  0%   { opacity: 0.15; transform: translateY(-4px); }
+  50%  { opacity: 0.9;  transform: translateY(0px);  }
+  100% { opacity: 0.15; transform: translateY(4px);  }
 }
