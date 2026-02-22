@@ -18,9 +18,10 @@ import { getLenis } from '@/providers/LenisProvider'
 
 interface Props {
   currentFrame: number
+  isLoaded:     boolean
 }
 
-export default function HeroLogo({ currentFrame }: Props) {
+export default function HeroLogo({ currentFrame, isLoaded }: Props) {
   // Measure viewport height once on the client (avoids SSR mismatch)
   const [vh, setVh] = useState(0)
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function HeroLogo({ currentFrame }: Props) {
   )
 
   // Scale: 3.5× at start → 1× (navbar size) at frame 55
-  const logoScale = useTransform(smoothFrame, [0, 55], [3.5, 1], { clamp: true })
+  const logoScale = useTransform(smoothFrame, [0, 55], [3.5, 2.5], { clamp: true })
 
   // Opacity: fully visible until frame 50, then crossfades out by frame 68
   const logoOpacity = useTransform(smoothFrame, [50, 68], [1, 0], { clamp: true })
@@ -66,6 +67,9 @@ export default function HeroLogo({ currentFrame }: Props) {
 
   // Don't render at all once fully faded (perf)
   if (currentFrame > 80) return null
+
+  // Stay invisible until the loading overlay is gone
+  if (!isLoaded) return null
 
   return (
     <motion.button

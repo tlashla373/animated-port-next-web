@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useImagePreloader } from '@/hooks/useImagePreloader'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
@@ -15,6 +15,11 @@ export default function MasterScrollScene() {
   const { images, isLoaded, loadProgress } = useImagePreloader()
   const scrollProgress = useScrollProgress(containerRef as React.RefObject<HTMLElement>)
   const currentFrame   = progressToFrame(scrollProgress)
+
+  // Tell the Navbar (and anything else) when loading is done
+  useEffect(() => {
+    if (isLoaded) window.dispatchEvent(new CustomEvent('site-loaded'))
+  }, [isLoaded])
 
   return (
     // ── Outer: scrollable height controls the journey duration ────────────
@@ -57,7 +62,7 @@ export default function MasterScrollScene() {
         <SectionContent currentFrame={currentFrame} />
         {/* ── Cinematic logo: hero-centre → navbar (outside SectionContent so
              it isn't clipped by the section's blur filter) ────────────── */}
-        <HeroLogo currentFrame={currentFrame} />
+        <HeroLogo currentFrame={currentFrame} isLoaded={isLoaded} />
       </div>
     </div>
   )

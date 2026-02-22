@@ -1,17 +1,18 @@
 // ─── Frame Map ────────────────────────────────────────────────────────────────
 // Source of truth for all frame-range and scroll-to-frame logic.
-// Total frames: 300 (files: ezgif-frame-001.png → ezgif-frame-300.png)
-// Internal indices:  0 → 299 (0-based)
+// Total frames: 345 (files: ezgif-frame-001 → ezgif-frame-345)
+// Internal indices:  0 → 344 (0-based)
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const TOTAL_FRAMES = 300
+export const TOTAL_FRAMES = 345
 
 // 0-indexed frame ranges. start/end are inclusive.
 export const SECTION_RANGES = {
-  hero:        { start: 0,   end: 69  },
-  about:       { start: 70,  end: 154 },
-  advantages:  { start: 155, end: 209 },
-  global:      { start: 210, end: 299 },
+  hero:       { start: 0,   end: 74  },
+  about:      { start: 75,  end: 149 },
+  fleet:      { start: 150, end: 224 },
+  global:     { start: 225, end: 299 },
+  advantages: { start: 300, end: 344 }, // frames 301–345 (new)
 } as const
 
 export type SectionKey = keyof typeof SECTION_RANGES
