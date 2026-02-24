@@ -9,31 +9,31 @@ interface Props {
 }
 
 const FLEET_STATS = [
-  { val: '150+', label: 'Vessels'       },
-  { val: '45',   label: 'Trade Routes'  },
-  { val: '2.8M', label: 'Tons / Year'  },
+  { val: '20+', label: 'Years of Experience' },
+  { val: '4',   label: 'Service Divisions'   },
+  { val: '24/7', label: 'Support'            },
 ]
 
 const VESSEL_TYPES = [
   {
     num:   '01',
-    title: 'Bulk Carriers',
-    body:  'Handysize to Capesize hulls purpose-built for dry bulk commodities — grain, coal, ore — across the world\'s major shipping lanes.',
+    title: 'Sea Freight',
+    body:  'Full and part container loads, bulk cargo and breakbulk handled through Colombo Port — one of Asia\'s busiest deep-water terminals — and all major global ports.',
   },
   {
     num:   '02',
-    title: 'Container Ships',
-    body:  'Feeder to ultra-large class vessels operating fast, scheduled liner services between major deep-water ports on six continents.',
+    title: 'Air Cargo',
+    body:  'Time-critical and high-value consignments moved via Bandaranaike International Airport and partner hubs worldwide, with door-to-door tracking and customs support.',
   },
   {
     num:   '03',
-    title: 'Tanker Fleet',
-    body:  'VLCC and Suezmax crude tankers alongside product and chemical carriers, all double-hulled and IMO Tier III compliant.',
+    title: 'Warehousing & Distribution',
+    body:  'Secure, climate-controlled bonded and free warehousing in Colombo 13, strategically located minutes from the port for fast cargo consolidation and dispatch.',
   },
   {
     num:   '04',
-    title: 'Multi-Purpose',
-    body:  'Heavy-lift and project-cargo specialists equipped to transport oversized cargo, industrial plant, and breakbulk freight.',
+    title: 'In-Bond & Clearing',
+    body:  'End-to-end customs brokerage, in-bond cargo management and documentation handled by our licensed clearing agents — minimising delays and compliance risk.',
   },
 ]
 
@@ -98,7 +98,7 @@ export default function FleetContent({ currentFrame }: Props) {
         className="font-zalando text-base md:text-xl lg:text-2xl text-[#F4F0E4] leading-[1.7] font-bold max-w-sm md:max-w-3xl lg:max-w-4xl mb-10"
         style={{ y: bodyY, opacity: bodyOp }}
       >
-        Port Authority commands one of the most diverse deep-sea cargo fleets
+        Royal Asia Shipping provides comprehensive logistics solutions
         in private operation — 150+ vessels spanning four vessel classes,
         purpose-matched to every trade lane and cargo type across the globe.
       </motion.p>
@@ -112,7 +112,7 @@ export default function FleetContent({ currentFrame }: Props) {
           <div key={v.num} className="flex flex-col gap-1">
             <p className="text-[9px] tracking-[0.35em] text-[#C9B99A] font-light mb-1">{v.num}</p>
             <p className="text-[11px] font-semibold text-white tracking-wide uppercase mb-1">{v.title}</p>
-            <p className="text-[10px] text-white/45 leading-[1.7] tracking-wide font-light">{v.body}</p>
+            <p className="text-[10px] text-white/80 leading-[1.7] tracking-wide font-light">{v.body}</p>
           </div>
         ))}
       </motion.div>
@@ -125,7 +125,7 @@ export default function FleetContent({ currentFrame }: Props) {
         {FLEET_STATS.map(({ val, label }) => (
           <div key={label} className="flex flex-col items-center">
             <p className="text-2xl text-white font-bold tabular-nums">{val}</p>
-            <p className="text-[10px] tracking-[0.22em] text-white/80 uppercase mt-1 font-bold">
+            <p className="text-[10px] tracking-[0.22em] text-white/100 uppercase mt-1 font-bold">
               {label}
             </p>
           </div>

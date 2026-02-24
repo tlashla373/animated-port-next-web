@@ -48,7 +48,7 @@ export default function HeroContent({ currentFrame }: Props) {
 
   return (
     <section
-      aria-label="Hero — Port Authority Private Aviation"
+      aria-label="Hero — Royal Asia Shipping"
       style={{
         opacity,
         filter: blur,
@@ -60,39 +60,38 @@ export default function HeroContent({ currentFrame }: Props) {
 
       {/* ── TOP-LEFT: large headline — zoom + sweep left ─────── */}
       <motion.div
-        className="absolute top-[20%] left-6 md:left-14 max-w-[38vw]"
+        className="absolute top-[18%] left-4 md:left-14 max-w-[46vw] md:max-w-[38vw]"
         style={{ x: leftX, scale: leftScale, transformOrigin: 'left center' }}
       >
-        <h1 className="font-zalando text-[clamp(2.1rem,7vw,5rem)] font-semibold leading-[0.95] text-white tracking-tight">
-          We are<br />movement
+        <h1 className="font-zalando text-[clamp(1.55rem,7vw,5rem)] font-semibold leading-[0.95] text-white tracking-tight">
+          Secure.<br />Fast.
         </h1>
       </motion.div>
 
       {/* ── TOP-RIGHT: large headline — zoom + sweep right ────── */}
       <motion.div
-        className="absolute top-[50%] right-6 md:right-14 max-w-[38vw] text-right"
+        className="absolute top-[62%] md:top-[50%] right-4 md:right-14 max-w-[46vw] md:max-w-[38vw] text-right"
         style={{ x: rightX, scale: rightScale, transformOrigin: 'right center' }}
       >
-        <h2 className="font-zalando text-[clamp(2.1rem,7vw,5rem)] font-semibold leading-[0.95] text-white tracking-tight">
-          We are<br />distinction
+        <h2 className="font-zalando text-[clamp(1.55rem,7vw,5rem)] font-semibold leading-[0.95] text-white tracking-tight">
+          Global.<br />Trackable.
         </h2>
       </motion.div>
 
       {/* ── BOTTOM-LEFT: sub-heading + body — slide down + fade ─ */}
       <motion.div
-        className="absolute bottom-[20%] left-6 md:left-14 max-w-[260px]"
+        className="absolute bottom-[18%] md:bottom-[20%] left-4 md:left-14 max-w-[160px] md:max-w-[260px]"
         style={{ y: bottomLeftY, opacity: bottomLeftOpacity }}
       >
-        <p className="font-zalando text-base md:text-xl font-semibold text-white leading-snug mb-3">
-          Your freedom to<br />enjoy life
+        <p className="font-zalando text-sm md:text-xl font-semibold text-white leading-snug mb-2 md:mb-3">
+          First Class<br />Logistics Services
         </p>
         {/* divider */}
-        <div className="w-6 h-px bg-white/80 mb-4" />
-        <p className="font-zalando text-[0.72rem] md:text-[0.78rem] text-white/100 leading-[1.85] font-light">
-          Every flight is designed around your comfort,
-          time, and ambitions — so you can focus on
-          what truly matters, while we take care of
-          everything else.
+        <div className="w-5 md:w-6 h-px bg-white/80 mb-3 md:mb-4" />
+        <p className="font-zalando text-[0.58rem] md:text-[0.78rem] text-white/100 leading-[1.75] md:leading-[1.85] font-light">
+          Shipping, Air Cargo, Freight Forwarding,
+          Chartering, Warehousing and Cargo Clearing —
+          handled by skilled professionals since 2004.
         </p>
       </motion.div>
 
@@ -123,7 +122,7 @@ export default function HeroContent({ currentFrame }: Props) {
 
       {/* ── BOTTOM-RIGHT: scroll indicator — fade out ─────────── */}
       <motion.div
-        className="absolute bottom-[10%] right-6 md:right-14 flex items-center gap-4"
+        className="absolute bottom-[10%] right-4 md:right-14 flex items-center gap-2 md:gap-4"
         style={{ opacity: indicatorOpacity }}
       >
         {/* double chevron + SCROLL DOWN */}
@@ -146,16 +145,16 @@ export default function HeroContent({ currentFrame }: Props) {
               <polyline points="2 2 12 10 22 2"/>
             </svg>
           </div>
-          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-white/90 font-medium">
+          <p className="text-[0.52rem] md:text-[0.58rem] tracking-[0.22em] md:tracking-[0.28em] uppercase text-white/90 font-medium">
             Scroll Down
           </p>
         </div>
 
         {/* divider */}
-        <div className="w-px h-3 bg-white/20" />
+        <div className="hidden md:block w-px h-3 bg-white/20" />
 
         {/* TO START THE JOURNEY */}
-        <p className="text-[0.58rem] tracking-[0.22em] uppercase text-white/90 font-light">
+        <p className="hidden md:block text-[0.58rem] tracking-[0.22em] uppercase text-white/90 font-light">
           To Start the Journey
         </p>
       </motion.div>

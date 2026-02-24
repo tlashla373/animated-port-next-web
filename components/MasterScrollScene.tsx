@@ -27,7 +27,7 @@ export default function MasterScrollScene() {
     <div
       id="master-scroll"
       ref={containerRef}
-      className="relative h-[350vh] md:h-[500vh]"
+      className="relative h-[420vh] md:h-[600vh]"
     >
       {/* ── Inner: sticky viewport panel — never moves ─────────────────── */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#050505]">
@@ -41,7 +41,7 @@ export default function MasterScrollScene() {
         >
           <div className="flex flex-col items-center gap-5">
             <p className="text-[10px] tracking-[0.48em] uppercase text-white/25 font-light">
-              Port Authority
+              Royal Asia Shipping
             </p>
             <div className="relative w-52 h-px bg-white/10 overflow-hidden">
               <motion.div
@@ -57,6 +57,9 @@ export default function MasterScrollScene() {
 
         {/* ── Canvas: draws the sequence frame ────────────────────────── */}
         <CanvasSequence images={images} currentFrame={currentFrame} />
+
+        {/* ── Dark overlay: improves text legibility across all frames ── */}
+        <div className="absolute inset-0 bg-black/35 pointer-events-none z-[1]" />
 
         {/* ── Text overlays: section content ──────────────────────────── */}
         <SectionContent currentFrame={currentFrame} />

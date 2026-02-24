@@ -10,7 +10,7 @@ import { getLenis } from '@/providers/LenisProvider'
 const SECTION_FRAMES: Record<string, number> = {
   '#home':        0,
   '#about':       100,   // About starts frame 75
-  '#fleet':       160,   // Fleet starts frame 150
+  '#fleet':       180,   // Fleet starts frame 150
   '#network':     236,   // Global starts frame 225
   '#advantages-seq': 300, // Advantages sequence frames 300–344
 }
@@ -24,7 +24,7 @@ function getScrollYForFrame(frame: number): number {
   if (!container) return 0
   // scrollable distance = total container height minus one viewport
   const scrollable = container.offsetHeight - window.innerHeight
-  return Math.round((frame / 299) * scrollable)
+  return Math.round((frame / 410) * scrollable)
 }
 
 /**
@@ -47,14 +47,15 @@ function navScrollTo(href: string) {
     return
   }
 
-  // Advantages: scroll the canvas to frame 300 — the transition overlay
-  // will auto-scroll to the standalone #advantages section at frame ~320
+  // Advantages: scroll directly to the DOM section (below the canvas scene)
   if (href === '#advantages') {
-    const targetY = getScrollYForFrame(300)
+    const el = document.getElementById('advantages')
+    if (!el) return
+    const targetY = el.getBoundingClientRect().top + window.scrollY
     if (lenis) {
       lenis.scrollTo(targetY, { duration: 1.6 })
     } else {
-      window.scrollTo({ top: targetY })
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
     }
     return
   }
@@ -96,24 +97,11 @@ export default function Navbar() {
       const scrollable = el.offsetHeight - window.innerHeight
       if (scrollable <= 0) return
       const progress = Math.max(0, Math.min(1, window.scrollY / scrollable))
-      setFrame(Math.round(progress * 299))
+      setFrame(Math.round(progress * 410))
     }
     onScroll() // initialise immediately
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  // Detect when the light Advantages section is visible — switch nav to dark text
-  const [isLight, setIsLight] = useState(false)
-  useEffect(() => {
-    const el = document.getElementById('advantages')
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([entry]) => setIsLight(entry.isIntersecting),
-      { threshold: 0.15 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
   }, [])
 
   // Wordmark fades IN as HeroLogo fades out (crossfade window: frames 50•68)
@@ -128,9 +116,9 @@ export default function Navbar() {
 
         {/* ── Left: Home + About + Our Fleet ──────────────────────────── */}
         <div className="hidden md:flex items-center gap-10">
-          <NavBtn light={isLight} onClick={() => navScrollTo('#home')}>Home</NavBtn>
-          <NavBtn light={isLight} onClick={() => navScrollTo('#about')}>About</NavBtn>
-          <NavBtn light={isLight} onClick={() => navScrollTo('#fleet')}>Our Fleet</NavBtn>
+          <NavBtn onClick={() => navScrollTo('#home')}>Home</NavBtn>
+          <NavBtn onClick={() => navScrollTo('#about')}>About</NavBtn>
+          <NavBtn onClick={() => navScrollTo('#fleet')}>Our Fleet</NavBtn>
         </div>
 
         {/* ── Centre: Wordmark (crossfades in as HeroLogo arrives) ──────── */}
@@ -138,26 +126,26 @@ export default function Navbar() {
           onClick={() => navScrollTo('#home')}
           style={{ opacity: wordmarkOpacity, transition: 'opacity 0.08s linear' }}
           className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center leading-none select-none cursor-pointer"
-          aria-label="Port Authority — scroll to top"
+          aria-label="Royal Asia Shipping — scroll to top"
         >
-          <span className={`text-[10px] tracking-[0.52em] uppercase font-light transition-colors duration-300 ${isLight ? 'text-[#8B7355]' : 'text-[#C9B99A]'}`}>
-            Port
+          <span className="font-zalando text-[10px] tracking-[0.52em] uppercase font-semibold text-[#ffebc3]">
+            Royal Asia
           </span>
-          <span className={`text-[17px] md:text-[19px] tracking-[0.38em] uppercase font-light -mt-0.5 transition-colors duration-300 ${isLight ? 'text-[#1a1a1a]' : 'text-white'}`}>
-            Authority
+          <span className="font-zalando text-[17px] md:text-[19px] tracking-[0.38em] uppercase font-semibold -mt-0.5 text-white">
+            Shipping
           </span>
         </button>
 
         {/* ── Right: Network + Advantages + Contact ────────────────────── */}
         <div className="hidden md:flex items-center gap-10">
-          <NavBtn light={isLight} onClick={() => navScrollTo('#network')}>Network</NavBtn>
-          <NavBtn light={isLight} onClick={() => navScrollTo('#advantages')}>Advantages</NavBtn>
-          <NavBtn light={isLight} onClick={() => navScrollTo('#contact')}>Contact</NavBtn>
+          <NavBtn onClick={() => navScrollTo('#network')}>Network</NavBtn>
+          <NavBtn onClick={() => navScrollTo('#advantages')}>Advantages</NavBtn>
+          <NavBtn onClick={() => navScrollTo('#contact')}>Contact</NavBtn>
         </div>
 
         {/* ── Mobile: hamburger ─────────────────────────────────────────── */}
         <div className="flex md:hidden ml-auto">
-          <MobileMenu links={NAV_LINKS} light={isLight} />
+          <MobileMenu links={NAV_LINKS} />
         </div>
       </div>
     </nav>
@@ -167,20 +155,14 @@ export default function Navbar() {
 function NavBtn({
   onClick,
   children,
-  light = false,
 }: {
   onClick: () => void
   children: React.ReactNode
-  light?: boolean
 }) {
   return (
     <button
       onClick={onClick}
-      className={`text-[10px] tracking-[0.3em] uppercase transition-colors duration-300 font-light ${
-        light
-          ? 'text-[#1a1a1a] hover:text-[#1a1a1a]/40'
-          : 'text-white/100 hover:text-white/50'
-      }`}
+      className="text-[10px] tracking-[0.3em] uppercase font-light text-white/100 hover:text-white/50 transition-colors duration-300"
     >
       {children}
     </button>
@@ -189,10 +171,8 @@ function NavBtn({
 
 function MobileMenu({
   links,
-  light = false,
 }: {
   links: { label: string; href: string }[]
-  light?: boolean
 }) {
   const [open, setOpen] = useState(false)
 
@@ -200,8 +180,6 @@ function MobileMenu({
     setOpen(false)
     navScrollTo(href)
   }
-
-  const barColor = light ? 'bg-[#1a1a1a]' : 'bg-white'
 
   return (
     <>
@@ -211,9 +189,9 @@ function MobileMenu({
         aria-label="Toggle menu"
         className="flex flex-col gap-[5px] p-1"
       >
-        <span className={`block h-px w-5 ${barColor} transition-all duration-300 origin-center ${open ? 'rotate-45 translate-y-[7px]' : ''}`} />
-        <span className={`block h-px w-5 ${barColor} transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-        <span className={`block h-px w-5 ${barColor} transition-all duration-300 origin-center ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+        <span className="block h-px w-5 bg-white transition-all duration-300 origin-center" style={{transform: open ? 'rotate(45deg) translateY(7px)' : ''}} />
+        <span className={`block h-px w-5 bg-white transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+        <span className="block h-px w-5 bg-white transition-all duration-300 origin-center" style={{transform: open ? 'rotate(-45deg) translateY(-7px)' : ''}} />
       </button>
 
       {/* Dropdown */}

@@ -2,8 +2,8 @@
 
 /**
  * HeroLogo
- *
- * Renders the "Port Authority" wordmark as a scroll-driven cinematic element:
+ * 
+ * Renders the "Royal Asia Shipping" wordmark as a scroll-driven cinematic element:
  *   Frame  0  → large, centred in the viewport
  *   Frame 55  → shrunk to navbar size, sitting at the navbar's centre
  *   Frame 50-68 → crossfades with the Navbar's own wordmark (which fades IN)
@@ -56,8 +56,8 @@ export default function HeroLogo({ currentFrame, isLoaded }: Props) {
   // Scale: 3.5× at start → 1× (navbar size) at frame 55
   const logoScale = useTransform(smoothFrame, [0, 55], [3.5, 2.5], { clamp: true })
 
-  // Opacity: fully visible until frame 50, then crossfades out by frame 68
-  const logoOpacity = useTransform(smoothFrame, [50, 68], [1, 0], { clamp: true })
+  // Opacity: fully visible until frame 50, then crossfades out by frame 55
+  const logoOpacity = useTransform(smoothFrame, [50, 55], [1, 0], { clamp: true })
 
   function handleClick() {
     const lenis = getLenis()
@@ -74,7 +74,7 @@ export default function HeroLogo({ currentFrame, isLoaded }: Props) {
   return (
     <motion.button
       onClick={handleClick}
-      aria-label="Port Authority — scroll to top"
+      aria-label="Royal Asia Shipping — scroll to top"
       style={{
         position: 'fixed',
         top: 0,
@@ -87,13 +87,13 @@ export default function HeroLogo({ currentFrame, isLoaded }: Props) {
         transformOrigin: 'center center',
         pointerEvents: 'auto',
       }}
-      className="flex flex-col items-center leading-none select-none cursor-pointer"
+      className="flex flex-col items-center leading-none select-none cursor-pointer gap-0.5"
     >
-      <span className="text-[6px] tracking-[0.2em] uppercase text-[#C9B99A] font-light">
-        Port
+      <span className=" font-zalando text-[6px] tracking-[0.2em] uppercase text-[#ffebc3] font-semibold">
+        Royal Asia
       </span>
-      <span className="text-[8px] md:text-[8px] tracking-[0.3em] uppercase text-white font-light -mt-0.5">
-        Authority
+      <span className="font-zalando text-[8px] md:text-[8px] tracking-[0.3em] uppercase text-white font-semibold -mt-0.5">
+        Shipping
       </span>
     </motion.button>
   )

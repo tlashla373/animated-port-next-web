@@ -12,28 +12,28 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Port Authority | Elite Private Aviation',
+  title: 'Royal Asia Shipping | First Class Logistics Services',
   description:
-    'Port Authority delivers elite private aviation across 92 countries and 500+ verified private terminals. Zero queues. Absolute discretion. On your terms.',
+    'Royal Asia Shipping Co. (Pvt) Ltd — Established 2004. Shipping, Air Cargo, Freight Forwarding, Chartering, Warehousing and Cargo Clearing Services from Colombo, Sri Lanka.',
   keywords: [
-    'private aviation',
-    'private jet charter',
-    'elite aviation',
-    'luxury travel',
-    'business jet',
-    'private terminal',
+    'shipping company sri lanka',
+    'air cargo colombo',
+    'freight forwarding',
+    'cargo clearing',
+    'warehousing sri lanka',
+    'royal asia shipping',
   ],
   openGraph: {
-    title: 'Port Authority | The Sky Is Where You Belong',
+    title: 'Royal Asia Shipping | First Class Logistics Services',
     description:
-      'Elite private aviation. Uncompromising access. Designed for those who demand more.',
+      'Comprehensive logistics solutions. Shipping, Air Cargo, Freight Forwarding, Chartering, Warehousing and Cargo Clearing. Based in Colombo, Sri Lanka since 2004.',
     type: 'website',
-    siteName: 'Port Authority',
+    siteName: 'Royal Asia Shipping',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Port Authority | Elite Private Aviation',
-    description: 'Elite private aviation. On your terms.',
+    title: 'Royal Asia Shipping | First Class Logistics Services',
+    description: 'Shipping, Air Cargo, Freight Forwarding, Chartering, Warehousing and Cargo Clearing from Colombo, Sri Lanka.',
   },
   robots: {
     index: true,

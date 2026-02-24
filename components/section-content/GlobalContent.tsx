@@ -7,9 +7,9 @@ interface Props {
 }
 
 const STATS = [
-  { val: '6',    label: 'Continents' },
-  { val: '92',   label: 'Countries'  },
-  { val: '500+', label: 'Terminals'  },
+  { val: '2004', label: 'Est. Colombo' },
+  { val: '45+',  label: 'Trade Lanes'  },
+  { val: '24/7', label: 'Operations'   },
 ]
 
 export default function GlobalContent({ currentFrame }: Props) {
@@ -37,35 +37,35 @@ export default function GlobalContent({ currentFrame }: Props) {
       <div className="flex items-center gap-3 mb-7">
         <div style={{ width: lineW, height: 1, background: '#C9B99A', flexShrink: 0 }} />
         <p
-          className="text-[10px] tracking-[0.42em] uppercase text-[#C9B99A] font-light whitespace-nowrap"
+          className="font-zalando text-[10px] tracking-[0.42em] uppercase text-[#ffffff] font-light whitespace-nowrap"
           style={{ letterSpacing: `${0.3 + (1 - opacity) * 0.2}em` }}
         >
-          04 — Global Network
+          04 — Our Network
         </p>
         <div style={{ width: lineW, height: 1, background: '#C9B99A', flexShrink: 0 }} />
       </div>
 
       {/* Headline */}
-      <h2 className="text-4xl md:text-[5rem] font-light leading-[1.1] text-white mb-6">
-        Every Continent.
+      <h2 className="font-zalando text-4xl md:text-[5rem] font-bold leading-[1.1] text-white mb-6">
+        Colombo to the World.
         <br />
-        Every Runway.
+        Door to Door.
       </h2>
 
       {/* Body */}
-      <p className="text-sm text-white/50 leading-[1.9] tracking-wide font-light max-w-md mb-10">
-        From Teterboro to Tōkyō. Geneva to the Gulf. Port Authority operates
-        across 6 continents, 92 countries, and 500+ verified private
-        terminals — with 24/7 operational control staffed by aviation
-        specialists, not call centres.
+      <p className="font-zalando text-sm text-white/90 leading-[1.9] tracking-wide font-light max-w-md mb-10">
+        From our base in Colombo 13 — steps from the Port — Royal Asia Shipping
+        connects Sri Lanka to global trade lanes across Asia, the Middle East,
+        Europe and beyond, with 24/7 operational control and licensed clearing agents
+        on hand at every step.
       </p>
 
       {/* Stats */}
       <div className="flex gap-12 md:gap-20">
         {STATS.map(({ val, label }) => (
           <div key={label} className="text-center">
-            <p className="text-3xl font-light text-white tabular-nums">{val}</p>
-            <p className="text-[10px] tracking-[0.25em] text-white/30 uppercase mt-1 font-light">
+            <p className="font-zalando text-3xl font-semibold text-white tabular-nums">{val}</p>
+            <p className="font-zalando text-[10px] tracking-[0.25em] text-white/90 uppercase mt-1 font-light">
               {label}
             </p>
           </div>

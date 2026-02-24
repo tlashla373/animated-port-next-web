@@ -9,9 +9,9 @@ interface Props {
 }
 
 const STATS = [
-  { val: '18+',  label: 'Years Operating' },
-  { val: '340+', label: 'Aircraft'         },
-  { val: '98%',  label: 'On-Time Rate'     },
+  { val: '20+',  label: 'Years Operating' },
+  { val: '4',    label: 'Core Services'   },
+  { val: '100%', label: 'Client Focus'    },
 ]
 
 // About section: frames 70–154
@@ -46,7 +46,7 @@ export default function AboutContent({ currentFrame }: Props) {
 
   return (
     <section
-      aria-label="About Port Authority"
+      aria-label="About Royal Asia Shipping"
       className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center overflow-hidden"
     >
       {/* Section label + rule */}
@@ -56,7 +56,7 @@ export default function AboutContent({ currentFrame }: Props) {
       >
         <div style={{ width: lineW / 2, height: 1, background: '#ffffff', flexShrink: 0 }} />
         <p className="text-[10px] tracking-[0.6em] uppercase text-white font-light whitespace-nowrap">
-          01 — About
+          01 — About Us
         </p>
         <div style={{ width: lineW / 2, height: 1, background: '#ffffff', flexShrink: 0 }} />
       </motion.div>
@@ -66,7 +66,7 @@ export default function AboutContent({ currentFrame }: Props) {
         className="font-zalando text-3xl md:text-[3.2rem] font-extrabold leading-[1.1] text-[#F4F0E4] mb-7 max-w-2xl"
         style={{ y: headY, opacity: headOp }}
       >
-        A Standard Above Standard.
+        Providing First Class Logistic Services.
       </motion.h2>
 
       {/* Body */}
@@ -74,11 +74,10 @@ export default function AboutContent({ currentFrame }: Props) {
         className="font-zalando text-base md:text-2xl lg:text-3xl text-[#F4F0E4] leading-[1.7] font-bold max-w-sm md:max-w-3xl lg:max-w-5xl"
         style={{ y: bodyY, opacity: bodyOp }}
       >
-        Port Authority was built for the sovereign traveller — the executive
-        who views time as currency and refuses to spend it in terminals. We
-        operate a privately managed fleet, handled exclusively by former
-        military and commercial aviation professionals with decades of
-        precision experience.
+        Royal Asia Shipping Co. (Pvt) Ltd was established in 2004. We provide
+        Shipping, Air Cargo, Freight Forwarding, Chartering, Warehousing and
+        Cargo Clearing Services to the utmost satisfaction of our customers
+        under highly skilled and competent professionals.
       </motion.p>
 
       {/* Stats row */}
