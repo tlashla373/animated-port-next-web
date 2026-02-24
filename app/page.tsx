@@ -1,6 +1,7 @@
 import MasterScrollScene from '@/components/MasterScrollScene'
 import AdvantagesSection from '@/components/AdvantagesSection'
 import GlobeFooter from '@/components/GlobeFooter'
+import FloatingCTA from '@/components/FloatingCTA'
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
       <MasterScrollScene />
       <AdvantagesSection />
       <GlobeFooter />
+      <FloatingCTA />
     </main>
   )
 }

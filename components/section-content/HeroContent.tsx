@@ -95,31 +95,6 @@ export default function HeroContent({ currentFrame }: Props) {
         </p>
       </motion.div>
 
-      {/* ── BOTTOM-CENTER: CTA buttons ─────────────────────────── 
-      <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 flex items-center gap-3 pointer-events-auto">
-        <button
-          className="flex items-center gap-2 bg-white text-black text-[0.78rem]
-                     font-semibold tracking-wide px-6 py-3 rounded-full
-                     hover:bg-white/90 transition-colors duration-300"
-          aria-label="Book the flight"
-        >
-          Book the Flight
-        </button>
-        <button
-          className="w-11 h-11 rounded-full border border-white/30 flex items-center
-                     justify-center text-white hover:border-white/70 transition-colors duration-300"
-          aria-label="Explore"
-        >
-          {/* plane icon 
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10
-                     3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13
-                     19v-5.5z"/>
-          </svg>
-        </button>
-      </div> */}
-      
-
       {/* ── BOTTOM-RIGHT: scroll indicator — fade out ─────────── */}
       <motion.div
         className="absolute bottom-[10%] right-4 md:right-14 flex items-center gap-2 md:gap-4"
